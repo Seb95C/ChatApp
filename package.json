@@ -5,12 +5,13 @@
   "main": "index.js",
   "scripts": {
     "start": "node src/index.js",
-    "dev": "nodemon -e html src/index.js"
+    "dev": "nodemon -e js,html src/index.js"
   },
   "author": "Sebastian Calcan",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "socket.io": "^4.5.4"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"
