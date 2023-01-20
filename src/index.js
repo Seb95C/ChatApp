@@ -29,6 +29,10 @@ io.on('connection', (socket) => {
     socket.on('message', (message) => {
         io.emit('message', message)
     })
+
+    socket.on('disconnect', () => {
+        io.emit('message', 'A user has left the chat!')
+    })
 })
 
 // Server start-up
