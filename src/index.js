@@ -20,8 +20,15 @@ const port = process.env.PORT || 3000
 // Configure static content
 app.use(express.static(staticDirPath))
 
-io.on('connection', () => {
+io.on('connection', (socket) => {
     console.log('New WebSocket connection')
+
+    socket.emit('message', 'Welcome!')
+    socket.broadcast.emit('message', 'A new user has joined')
+
+    socket.on('message', (message) => {
+        io.emit('message', message)
+    })
 })
 
 // Server start-up
