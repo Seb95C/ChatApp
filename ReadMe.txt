@@ -1,0 +1,1 @@
+The CSS and IMG files were downloaded from the Node.js course files folder and were created by the course creator.
