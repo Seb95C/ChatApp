@@ -8,7 +8,13 @@
     <body>
         <div class="chat">
             <div id="sidebar" class="chat__sidebar">
-                
+                <div id="sidebar-users">
+
+                </div>
+                <br>
+                <div id="sidebar-rooms">
+
+                </div>
             </div>
             <div class="chat__main">
                 <div id="messages" class="chat__messages"></div>
@@ -50,6 +56,15 @@
                 {{#users}}
                     <li>{{username}}</li>
                 {{/users}}
+            </ul>
+        </script>
+
+        <script id="sidebar-rooms-template" type="text/html">
+            <h3 class="list-title">Other rooms</h3>
+            <ul class="users">
+                {{#rooms}}
+                    <li>{{name}} ({{peopleInRoom}})</li>
+                {{/rooms}}
             </ul>
         </script>
 

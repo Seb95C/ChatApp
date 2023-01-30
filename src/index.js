@@ -10,6 +10,7 @@ const Filter = require('bad-words')
 // App modules
 const { generateMessage, generateLocationMessage } = require('./utils/messages')
 const { addUser, removeUser, getUser, getUsersInRoom } = require('./utils/users')
+const { addPersonToRoom, removePersonFromRoom } = require('./utils/rooms')
 
 // Path management
 const staticDirPath = path.join(__dirname, '../public')
@@ -44,6 +45,9 @@ io.on('connection', (socket) => {
             users: getUsersInRoom(user.room)
         })
 
+        const rooms = addPersonToRoom(user.room)
+        io.emit('roomsUpdate', rooms)
+
         callback()
     })
 
@@ -76,6 +80,9 @@ io.on('connection', (socket) => {
                 room: user.room,
                 users: getUsersInRoom(user.room)
             })
+
+            const rooms = removePersonFromRoom(user.room)
+            io.emit('roomsUpdate', rooms)
         }
     })
 })

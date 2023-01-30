@@ -11,6 +11,7 @@ const $messages = document.querySelector('#messages')
 const messageTemplate = document.querySelector('#message-template').innerHTML
 const locationTemplate = document.querySelector('#location-template').innerHTML
 const sidebarTemplate = document.querySelector('#sidebar-template').innerHTML
+const sidebarRoomsTemplate = document.querySelector('#sidebar-rooms-template').innerHTML
 
 // Options
 const { username, room } = Qs.parse(location.search, { ignoreQueryPrefix: true })
@@ -58,12 +59,17 @@ socket.on('locationMessage', (message) => {
     autoscroll()
 })
 
-socket.on('roomData', ({ room, users }) => {
+socket.on('roomData', ({ room, users, rooms }) => {
     const html = Mustache.render(sidebarTemplate, {
         room,
         users
     })
-    document.querySelector('#sidebar').innerHTML = html
+    document.querySelector('#sidebar-users').innerHTML = html
+})
+
+socket.on('roomsUpdate', (rooms) => {
+    const htmlRooms = Mustache.render(sidebarRoomsTemplate, { rooms })
+    document.querySelector('#sidebar-rooms').innerHTML = htmlRooms
 })
 
 $messageForm.addEventListener('submit', () => {
