@@ -68,11 +68,11 @@ socket.on('roomData', ({ room, users, rooms }) => {
 })
 
 socket.on('roomsUpdate', (rooms) => {
-    const htmlRooms = Mustache.render(sidebarRoomsTemplate, { rooms })
+    const htmlRooms = Mustache.render(sidebarRoomsTemplate, { rooms, username })
     document.querySelector('#sidebar-rooms').innerHTML = htmlRooms
 })
 
-$messageForm.addEventListener('submit', () => {
+$messageForm.addEventListener('submit', (e) => {
     // Disable form
     $messageButton.setAttribute('disabled', 'disabled')
 
@@ -91,7 +91,7 @@ $messageForm.addEventListener('submit', () => {
         console.log('Message delivered!')
     })
 
-    event.preventDefault()
+    e.preventDefault()
 })
 
 $sendLocationButton.addEventListener('click', () => {

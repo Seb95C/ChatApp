@@ -63,7 +63,7 @@
             <h3 class="list-title">Other rooms</h3>
             <ul class="users">
                 {{#rooms}}
-                    <li>{{name}} ({{peopleInRoom}})</li>
+                    <li><a style="text-decoration: none; color: white;" href="/chat.html?username={{username}}&&room={{name}}">{{name}} ({{peopleInRoom}})</a></li>
                 {{/rooms}}
             </ul>
         </script>
